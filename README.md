@@ -11,6 +11,12 @@ folder in your Claude skills directory. Each skill is self-contained.
 |-------|--------------|
 | `linear-project-intake` | Turn a PRD / brief into a structured Linear project plan |
 | `linear-issue-intake` | Turn rough reports or feedback into Linear issues in an existing project |
+| `task-intake` | Capture a raw to-do as a single Task in a Fibery-style intake/triage system |
+| `project-intake` | Interview a rough project idea into a structured Project, Triage-gated until Ready |
+| `initiative-intake` | Interview a strategic objective into an Initiative that contains Projects |
+| `triage-enrich` | Complete an existing Not-Ready Triage item — asks for missing commitments, never invents them |
+
+The 4 intake/enrich skills share a common "Operating Contract" (Definition of Ready, audit schema, ask-don't-guess rule for commitment fields) — each ships its own copy under `references/readiness-contract.md` + `references/CONTEXT.md` so it stays self-contained; the source of truth lives in the original GBG Fibery deployment these were built for. Adapt the Fibery-specific field/database names to your own tool if reusing.
 
 ## Layout
 
