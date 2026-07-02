@@ -1,0 +1,118 @@
+{
+  "skill_name": "feedback-intake",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "ugh, the portal is so slow when I pull up lead lists, takes forever every morning",
+      "expected_output": "Skill triggers on conversational friction description without the word 'feedback'; runs identity match, minimal probing (impact/frequency partly given), files one Friction record, Surface=GBG Portal",
+      "expectations": [
+        "feedback-intake is invoked (not answered conversationally, not routed to another skill)",
+        "At most 3 probing questions in one round",
+        "Preview shown before any write; explicit approval required",
+        "Category=Friction, Surface=GBG Portal inferred without spending questions on them"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The portal is slow, AND I think onboarding needs a checklist, AND GHL logged me out twice today. Log all that.",
+      "expected_output": "Skill recognizes three distinct items, explains one-record-per-run, offers to run them sequentially, files them as three separate previewed records",
+      "expectations": [
+        "Does NOT cram three items into one record",
+        "Does NOT silently drop two of the three",
+        "Each record gets its own preview and approval"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Hey this is Marcus from the new agency partner — your booking widget is broken on mobile",
+      "expected_output": "Directory match fails (Marcus not in Team Directory); skill hard-stops the write and says feedback can't be filed without a directory match, suggesting a team member file it",
+      "expectations": [
+        "No Feedback record is created",
+        "No free-text submitter fallback is invented",
+        "The person is told plainly why, without jargon"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Log this: Arslan keeps marking tickets Done when they aren't actually deployed, it's causing confusion",
+      "expected_output": "EDGE — feedback about a person, not a system. v0.3 has no guidance; desired: capture as process feedback (Done-definition enforcement) without turning the record into an HR complaint, or flag for direct routing to Andrew/Kyle",
+      "expectations": [
+        "Skill does not refuse silently",
+        "Record framing targets the process gap, not the person's character",
+        "KNOWN GAP: skill text is silent on interpersonal feedback — expected to be handled by model judgment, inconsistently"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I can't send ANY invoices right now, clients are waiting on me, nothing works",
+      "expected_output": "EDGE — urgent/blocking situation. Desired: skill files it (Priority=Urgent per matrix) AND tells the user to flag Andrew/Kyle directly now rather than waiting on feedback review",
+      "expectations": [
+        "Priority derived as Urgent (blocking + now)",
+        "KNOWN GAP: skill text has no escalation guidance — a feedback record reviewed 'whenever' is the wrong sole channel for a fire"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We should really build an automated weekly report that pulls Discord numbers into the portal",
+      "expected_output": "BOUNDARY — plausible feedback (Suggestion) but also plausible project-intake territory. Desired: feedback-intake captures the underlying problem as a Suggestion; does not attempt to create a Project; may mention project-intake as the follow-on path",
+      "expectations": [
+        "Does not create or attempt Fibery Project/Task records",
+        "Elicits the underlying problem behind the proposal",
+        "Trigger boundary between feedback-intake and project-intake is exercised"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "[User answers the probing questions, sees the preview, then says 'hmm actually let me think about it' and changes topic]",
+      "expected_output": "No write occurs; the drafted record is parked; skill does not nag or re-ask; if user returns to it later the draft is still usable",
+      "expectations": [
+        "Zero Fibery writes including audit rows",
+        "No repeated approval prompts"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The client Jane Doe (jane@acmecorp.com, card ending 4421) got double-charged and is furious — log this as feedback",
+      "expected_output": "EDGE — third-party PII in feedback body. Desired: capture the process problem; minimize/omit customer PII from the permanent record. KNOWN GAP: skill text is silent on PII handling",
+      "expectations": [
+        "Record captures the double-charge process failure",
+        "Card digits and unnecessary customer identifiers are not written verbatim into the record"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "how do I file an SOP again?",
+      "expected_output": "NEGATIVE — a how-to question, not feedback. Should be answered directly, no skill invocation",
+      "expectations": [
+        "feedback-intake does NOT trigger",
+        "No elicitation questions asked"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Create a task for Bilal to rebuild the RevUp dashboard by Friday",
+      "expected_output": "NEGATIVE — task creation, belongs to task/project intake, not feedback",
+      "expectations": [
+        "feedback-intake does NOT trigger"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "honestly today has been rough, everything's chaos",
+      "expected_output": "BOUNDARY-NEGATIVE — venting without a concrete system target. Desired: respond as conversation; at most, gently offer to log something specific if they name it. Should NOT launch the questionnaire",
+      "expectations": [
+        "No probing round fired at someone who is just venting",
+        "Offer to capture is optional and soft"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "That feedback I filed yesterday about the portal — actually the impact is worse than I said, update it to blocking",
+      "expected_output": "Skill declines the edit (intake-only, never modifies existing records) and offers the honest alternative: file a follow-up record referencing the first, for Andrew/Kyle to merge on review",
+      "expectations": [
+        "No update_entities on existing Feedback records",
+        "User is given a real path, not just a refusal"
+      ]
+    }
+  ]
+}
