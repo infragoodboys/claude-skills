@@ -18,7 +18,9 @@ The output is a table the GBG Ops v2 router reads to choose its cheap and strong
 `references/sources.md` ranks the comparison sources. Each monthly run checks the **primary** sources listed there. Rules:
 
 - Every price, gateway slug, context window and benchmark score must cite a URL fetched in this run. If it can't be verified, write `unverified`. Never fill a gap from memory.
-- Use the Vercel AI Gateway model list (https://vercel.com/ai-gateway/models) for slugs and prices, because that is how GBG Ops calls models.
+- Use the Vercel AI Gateway model list (`GET https://ai-gateway.vercel.sh/v1/models`, no auth, plus `/v1/models/{creator}/{model}/endpoints` for price tiers and latency) for slugs and prices, because that is how GBG Ops calls models.
+- Gateway slugs put a dot in the version (`anthropic/claude-sonnet-5.5`), unlike Anthropic's own API IDs (`claude-sonnet-5-5`). Always copy the slug from the gateway list.
+- Our own eval (the labelled GBG Ops messages plus one test task per workflow) makes the final call on any change. Public boards only narrow the shortlist.
 - Judge on independent evals over vendor claims. Vendor-run leaderboards are secondary.
 - Don't favor any vendor. Weigh quality for the job, then cost, then latency.
 
