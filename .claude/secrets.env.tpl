@@ -8,4 +8,3 @@ SUPABASE_ACCESS_TOKEN=op://Agents/Supabase/credential
 VERCEL_TOKEN=op://Agents/Vercel/credential
 FLY_API_TOKEN=op://Agents/Fly/credential
 MERCURY_API_TOKEN=op://Agents/Mercury/credential
-DISCORD_BOT_TOKEN=op://Agents/Discord/credential
