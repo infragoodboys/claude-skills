@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: reviewer-learns-from-dismissals
+expected_outcome: |
+  A plan that reuses the prior survey without re-reading its repos, scouts only what it did not cover (learning PR reviewers, reviewer benchmarks), cites code-level mechanisms, and gates any learned rule on a replay of past PRs that loses no real Critical/Major finding.
+context:
+  scaffold_script: place-files.sh

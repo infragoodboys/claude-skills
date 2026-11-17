@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: schedule-in-chat-internal-first
+expected_outcome: |
+  The plan sees that the existing schedule MCP server already reads shift data and recommends widening that server's scope for the bot instead of building a new connector or searching GitHub.
+context:
+  scaffold_script: place-files.sh

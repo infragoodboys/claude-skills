@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: recurring-ci-failures
+expected_outcome: |
+  A plan grounded in how existing open-source tools build failure signatures, count recurrences and act on them, compared at code level, with licenses, a pick, a skip list and a replay on our own past CI runs before adoption.

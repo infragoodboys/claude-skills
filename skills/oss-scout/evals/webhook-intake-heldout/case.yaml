@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: webhook-intake-heldout
+expected_outcome: |
+  A plan grounded in how established open-source webhook/queue/idempotency tools dedupe, retry and replay, read at code level with licenses, a pick, a skip list, and a replay test on our own past events. Held out: no worked example covers this feature.
