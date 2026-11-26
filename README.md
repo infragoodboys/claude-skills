@@ -18,6 +18,7 @@ folder in your Claude skills directory. Each skill is self-contained.
 | `model-advisor` | Pick the AI model for each workflow from fresh benchmark and price sources; writes a matrix a router can read |
 | `oss-scout` | Before building an unfamiliar feature, search GitHub for open-source projects that solved it, read their code, compare approaches, and plan a replay on your own data before adopting anything |
 | `feedback-intake` | Capture feedback, problems, or improvement ideas about any part of the business as one actionable, audit-logged record |
+| `log-papercut` | When a skill or tool snags you, append one structured line (tried, expected, got, fix) to a shared log so the snags get grouped weekly and fixed |
 
 The 4 intake/enrich skills share a common "Operating Contract" (Definition of Ready, audit schema, ask-don't-guess rule for commitment fields) — each ships its own copy under `references/readiness-contract.md` + `references/CONTEXT.md` so it stays self-contained; the source of truth lives in the original GBG Fibery deployment these were built for. Adapt the Fibery-specific field/database names to your own tool if reusing.
 
